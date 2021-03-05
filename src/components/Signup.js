@@ -22,19 +22,18 @@ class Signup extends Component {
                    email: "",
                    password: "" };
   }
-   handleSubmit() {
-    // const newUser = await this.auth.createUserWithEmailAndPassword(this.state.email, this.state.password)
-    // console.log(newUser)
-    console.log(this.db.collection("users").get())
-    // this.db.collection('User').doc().set({
-    //   accountName: this.state.accountName,
-    //   email: this.state.email,
-    //   isTutor: this.state.isTutor
-    // }).then(() => {
-    //   alert("yes!")
-    // }).catch((err) => {
-    //   alert(err.message)
-    // })
+   async handleSubmit() {
+    const newUser = await this.auth.createUserWithEmailAndPassword(this.state.email, this.state.password)
+    console.log(newUser)
+    this.db.collection('users').doc().set({
+      accountName: this.state.accountName,
+      email: this.state.email,
+      isTutor: this.state.isTutor
+    }).then(() => {
+      alert("yes!")
+    }).catch((err) => {
+      alert(err.message)
+    })
   }
 
  
